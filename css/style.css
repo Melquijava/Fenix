@@ -1456,15 +1456,28 @@ h1 {
 .heroMedia {
     position: absolute;
     inset: 0;
-    z-index: 0;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .hero__grid {
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
 
-.heroMedia__video,
+.heroMedia video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    /* ESSENCIAL */
+    z-index: 1;
+    opacity: 1;
+    display: block;
+}
+
 .heroMedia__fallback {
     position: absolute;
     inset: -6%;
@@ -1493,7 +1506,7 @@ h1 {
         radial-gradient(860px 520px at 80% 70%, rgba(255, 177, 59, .12), transparent 60%),
         linear-gradient(180deg, rgba(0, 0, 0, .10), rgba(0, 0, 0, .70));
     opacity: .95;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Brasas/“fogo” bem sutil (cinema) */

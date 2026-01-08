@@ -979,3 +979,43 @@ window.addEventListener('keydown', (e) => {
 
     requestAnimationFrame(draw);
 })();
+
+(function forceVideoPlay() {
+    const videos = document.querySelectorAll("video");
+
+    const tryPlay = (video) => {
+        if (!video) return;
+        video.muted = true;
+
+        const p = video.play();
+        if (p && typeof p.then === "function") {
+            p.catch(() => {
+                // fallback: tenta de novo após interação
+                const retry = () => {
+                    video.play().catch(() => { });
+                    window.removeEventListener("click", retry);
+                    window.removeEventListener("touchstart", retry);
+                };
+                window.addEventListener("click", retry, { once: true });
+                window.addEventListener("touchstart", retry, { once: true });
+            });
+        }
+    };
+
+    // tenta no load
+    window.addEventListener("load", () => {
+        videos.forEach(tryPlay);
+    });
+
+    // tenta quando entra em viewport (mobile!)
+    const io = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((e) => {
+                if (e.isIntersecting) tryPlay(e.target);
+            });
+        },
+        { threshold: 0.25 }
+    );
+
+    videos.forEach((v) => io.observe(v));
+})();
