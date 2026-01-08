@@ -980,42 +980,73 @@ window.addEventListener('keydown', (e) => {
     requestAnimationFrame(draw);
 })();
 
-(function forceVideoPlay() {
-    const videos = document.querySelectorAll("video");
+(() => {
+    const vids = Array.from(document.querySelectorAll("video"));
 
-    const tryPlay = (video) => {
-        if (!video) return;
-        video.muted = true;
+    function showFallback(video, on = true) {
+        const wrap = video.closest(".heroMedia, .sectionCinema");
+        if (!wrap) return;
+        const fb = wrap.querySelector(".heroMedia__fallback, .sectionCinema__fallback");
+        if (!fb) return;
+        fb.style.opacity = on ? "1" : "0";
+    }
 
-        const p = video.play();
-        if (p && typeof p.then === "function") {
-            p.catch(() => {
-                // fallback: tenta de novo após interação
-                const retry = () => {
-                    video.play().catch(() => { });
-                    window.removeEventListener("click", retry);
-                    window.removeEventListener("touchstart", retry);
-                };
-                window.addEventListener("click", retry, { once: true });
-                window.addEventListener("touchstart", retry, { once: true });
-            });
+    async function safePlay(video) {
+        try {
+            video.muted = true;
+            video.playsInline = true;
+
+            // iOS/Safari: precisa estar "ready" às vezes
+            if (video.readyState < 2) {
+                await new Promise((res) => video.addEventListener("canplay", res, { once: true }));
+            }
+
+            const p = video.play();
+            if (p && p.then) await p;
+
+            // tocou -> esconde fallback
+            showFallback(video, false);
+            return true;
+        } catch (e) {
+            // falhou -> mostra fallback e tenta após gesto do usuário
+            showFallback(video, true);
+
+            const retry = () => {
+                safePlay(video);
+                window.removeEventListener("click", retry);
+                window.removeEventListener("touchstart", retry);
+            };
+            window.addEventListener("click", retry, { once: true });
+            window.addEventListener("touchstart", retry, { once: true });
+            return false;
         }
-    };
+    }
 
-    // tenta no load
-    window.addEventListener("load", () => {
-        videos.forEach(tryPlay);
-    });
-
-    // tenta quando entra em viewport (mobile!)
+    // tenta tocar quando entra na viewport (evita gastar banda e resolve mobile)
     const io = new IntersectionObserver(
         (entries) => {
             entries.forEach((e) => {
-                if (e.isIntersecting) tryPlay(e.target);
+                const v = e.target;
+                if (e.isIntersecting) safePlay(v);
+                else v.pause();
             });
         },
         { threshold: 0.25 }
     );
 
-    videos.forEach((v) => io.observe(v));
+    vids.forEach((v) => {
+        // fallback visível até tocar
+        showFallback(v, true);
+
+        // evita “tela preta”
+        v.setAttribute("preload", "metadata");
+        v.setAttribute("muted", "");
+        v.setAttribute("playsinline", "");
+        v.loop = true;
+
+        io.observe(v);
+    });
+
+    // tentativa inicial
+    window.addEventListener("load", () => vids.forEach(safePlay));
 })();
