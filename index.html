@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esquadrão FÊNIX — Treinos Avançados | Fluxo RP</title>
+    <meta name="description"
+        content="Site oficial do Esquadrão FÊNIX (GTA RP) — Treinos avançados, fluxo RP, QTH, funções e doutrina." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="bg" aria-hidden="true">
+        <div class="orb a"></div>
+        <div class="orb b"></div>
+        <div class="orb c"></div>
+        <div class="gridGlow"></div>
+    </div>
+
+    <!-- INTRO FÊNIX (2s) -->
+    <div class="introPhoenix" id="introPhoenix" aria-hidden="true">
+        <canvas class="introPhoenix__canvas" id="introCanvas"></canvas>
+
+        <!-- a fênix é a sua logo -->
+        <img class="introPhoenix__fenix" id="introFenixImg" src="img/fenix.png" alt="" />
+
+        <!-- brilho/fumaça leve cinematográfica -->
+        <div class="introPhoenix__glow"></div>
+
+        <!-- botão de pular (opcional, recomendado) -->
+        <button class="introPhoenix__skip" id="introSkip" type="button" aria-label="Pular animação">
+            Pular
+        </button>
+    </div>
+
+
+    <!-- TOPBAR -->
+    <header class="topbar" id="top">
+        <div class="container topbar__inner">
+            <a class="brand" href="#top" aria-label="Ir para o topo">
+                <span class="brand__logo">
+                    <img src="img/fenix.png" alt="Logo Esquadrão FÊNIX" />
+                </span>
+                <span class="brand__text">
+                    <strong>ESQUADRÃO FÊNIX</strong>
+                    <small>Operações Aéreas • Bombeiros • Fluxo RP</small>
+                </span>
+            </a>
+
+            <nav class="nav" aria-label="Navegação">
+                <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="nav__links" id="navLinks">
+                    <a class="nav__link" href="#visao">Visão</a>
+                    <a class="nav__link" href="#patentes">Patentes</a>
+                    <a class="nav__link" href="#fluxo">Padrões</a>
+                    <a class="nav__link" href="#ordem">Ordem</a>
+                    <a class="nav__link" href="#treinos">Treinos</a>
+                    <a class="nav__link" href="#galeria">Galeria</a>
+                </div>
+            </nav>
+
+            <div class="topbar__actions">
+                <button class="btn btn--ghost" id="btnPrint" type="button" title="Imprimir / Salvar PDF">🖨️
+                    PDF</button>
+                <button class="btn btn--primary" id="btnBriefing" type="button" title="Briefing rápido">📻
+                    Briefing</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" data-parallax-section>
+            <!-- CINEMATIC VIDEO BG -->
+            <div class="heroMedia" aria-hidden="true">
+                <video class="heroMedia__video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+                    poster="img/hangares.png">
+                    <source src="img/qg.mp4" type="video/mp4" />
+                </video>
+                <!-- fallback se vídeo falhar -->
+                <div class="heroMedia__fallback" style="background-image:url('img/hangares.png')"></div>
+
+                <!-- camadas cinematográficas -->
+                <div class="heroMedia__overlay"></div>
+                <div class="heroMedia__embers"></div>
+            </div>
+            <div class="container hero__grid">
+                <div class="hero__text">
+                    <p class="badge">
+                        <span class="badge__dot"></span>
+                        Doutrina • Disciplina • Resgate • Elite Aérea
+                    </p>
+
+                    <h1>
+                        Treinos Avançados<br />
+                        <span class="accent">Esquadrão FÊNIX</span>
+                    </h1>
+
+                    <p class="lead">
+                        Manual visual e planejamento oficial do Esquadrão FÊNIX no GTA RP:
+                        <strong>QTH</strong>, <strong>efetivo</strong>, <strong>funções por membro</strong>,
+                        <strong>progressão por patentes</strong> e <strong>Fluxo RP</strong>.
+                    </p>
+
+                    <div class="hero__cta">
+                        <a class="btn btn--primary" href="#treinos">🚁 Ver Treinos</a>
+                        <a class="btn btn--ghost" href="#patentes">🪖 Ver Patentes</a>
+                    </div>
+
+                    <div class="hero__stats">
+                        <div class="stat">
+                            <strong>Servidor</strong>
+                            <span>Esquadrão FÊNIX</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Modelo</strong>
+                            <span>Fluxo RP realista</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Foco</strong>
+                            <span>Resgate aéreo</span>
+                        </div>
+                    </div>
+
+                    <div class="seal">
+                        <div class="seal__icon">🔥</div>
+                        <div class="seal__text">
+                            <strong>F.Ê.N.I.X</strong>
+                            <span>“Renascemos em cada missão.”</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero__media">
+                    <div class="mediaCard" data-modal-img="img/por-do-sol.png" aria-label="Abrir imagem">
+                        <img src="img/por-do-sol.png" alt="Frota do Esquadrão FÊNIX" loading="eager" />
+                        <div class="mediaCard__overlay">
+                            <div>
+                                <span class="chip">FROTA</span>
+                                <strong>Prontidão operacional</strong>
+                            </div>
+                            <button class="iconBtn" type="button" data-open-image aria-label="Ampliar">⤢</button>
+                        </div>
+                    </div>
+
+                    <div class="mediaStrip">
+                        <button class="thumb" type="button" data-modal-img="img/por-do-sol.png"
+                            aria-label="Abrir imagem">
+                            <img src="img/voo-noturno.png" alt="Helicóptero ao pôr do sol" loading="lazy" />
+                        </button>
+                        <button class="thumb" type="button" data-modal-img="img/hangares.png" aria-label="Abrir imagem">
+                            <img src="img/hangares.png" alt="Voo noturno sobre a cidade" loading="lazy" />
+                        </button>
+                        <button class="thumb" type="button" data-modal-img="img/equipe.png" aria-label="Abrir imagem">
+                            <img src="img/equipe.png" alt="Equipe do Esquadrão FÊNIX" loading="lazy" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__bar" aria-hidden="true"></div>
+        </section>
+
+        <!-- VISÃO -->
+        <section class="section" id="visao">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Visão e Doutrina</h2>
+                    <p class="section__sub">
+                        O Esquadrão FÊNIX é a unidade aérea de resgate e apoio crítico dos Bombeiros no GTA RP.
+                        Aqui não tem “voo arcade”: tem procedimento, comando, rádio e disciplina.
+                    </p>
+                </div>
+
+                <div class="grid grid--3">
+                    <article class="card">
+                        <h3>Objetivo</h3>
+                        <p>
+                            Elevar o nível técnico e tático da unidade aérea, garantindo eficiência em operações de
+                            resgate,
+                            evacuação, extração e suporte em cenários de risco.
+                        </p>
+                        <ul class="list">
+                            <li>Controle fino de aeronave</li>
+                            <li>Comunicação padronizada</li>
+                            <li>Coordenação ar + solo</li>
+                            <li>Tomada de decisão sob pressão</li>
+                        </ul>
+                    </article>
+
+                    <article class="card">
+                        <h3>Princípios</h3>
+                        <p>Treino avançado é simulação realista com segurança e narrativa (RP).</p>
+                        <ul class="list">
+                            <li>Briefing e debriefing obrigatórios</li>
+                            <li>Erro vira aprendizado em RP</li>
+                            <li>Sem teleporte / sem atalho OOC</li>
+                            <li>Progressão por mérito</li>
+                        </ul>
+                    </article>
+
+                    <article class="card">
+                        <h3>Formato</h3>
+                        <p>Treinos com papéis definidos e avaliação objetiva.</p>
+                        <div class="pillRow">
+                            <span class="pill">🚁 Piloto</span>
+                            <span class="pill">🧑‍✈️ Copiloto</span>
+                            <span class="pill">🧯 Infantaria</span>
+                            <span class="pill">📻 Rádio</span>
+                            <span class="pill">🧭 QTH</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PATENTES -->
+        <section class="section" id="patentes">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Patentes Oficiais — Esquadrão FÊNIX</h2>
+                    <p class="section__sub">
+                        Hierarquia completa do esquadrão. A progressão é por mérito, disciplina e desempenho em
+                        operações e treinos.
+                    </p>
+                </div>
+
+                <div class="ranks">
+                    <div class="rankCard" data-rank="Recruta">
+                        <div class="rankCard__badge">I</div>
+                        <div class="rankCard__content">
+                            <strong>Recruta</strong>
+                            <span>Entrada • disciplina • fundamentos</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Cadete">
+                        <div class="rankCard__badge">II</div>
+                        <div class="rankCard__content">
+                            <strong>Cadete</strong>
+                            <span>padrões • comunicação • rotinas</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Oficial de Operações">
+                        <div class="rankCard__badge">III</div>
+                        <div class="rankCard__content">
+                            <strong>Oficial de Operações</strong>
+                            <span>coordenação • apoio • execução</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Oficial de Voo">
+                        <div class="rankCard__badge">IV</div>
+                        <div class="rankCard__content">
+                            <strong>Oficial de Voo</strong>
+                            <span>piloto apto • estabilidade • segurança</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Oficial Comandante">
+                        <div class="rankCard__badge">V</div>
+                        <div class="rankCard__content">
+                            <strong>Oficial Comandante</strong>
+                            <span>comando em campo • tomada de decisão</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Inspetor de Voo">
+                        <div class="rankCard__badge">VI</div>
+                        <div class="rankCard__content">
+                            <strong>Inspetor de Voo</strong>
+                            <span>avaliação • padrão • segurança aérea</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard" data-rank="Inspetor Geral">
+                        <div class="rankCard__badge">VII</div>
+                        <div class="rankCard__content">
+                            <strong>Inspetor Geral</strong>
+                            <span>doutrina • auditoria • processos</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard rankCard--amber" data-rank="Brigadeiro">
+                        <div class="rankCard__badge">VIII</div>
+                        <div class="rankCard__content">
+                            <strong>Brigadeiro</strong>
+                            <span>liderança • tática • instrução</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard rankCard--red" data-rank="General">
+                        <div class="rankCard__badge">IX</div>
+                        <div class="rankCard__content">
+                            <strong>General</strong>
+                            <span>alto comando • crise • estratégia</span>
+                        </div>
+                    </div>
+
+                    <div class="rankCard rankCard--gold" data-rank="Marechal Fênix">
+                        <div class="rankCard__badge">X</div>
+                        <div class="rankCard__content">
+                            <strong>Marechal Fênix</strong>
+                            <span>lei máxima • visão • evolução</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <div class="callout__icon">⚠️</div>
+                    <div class="callout__content">
+                        <strong>Regra de instrução:</strong> Treino novo sempre é validado primeiro pelo
+                        <strong>General ou Marechal</strong>.
+                        Após padronizar entre os oficiais responsáveis, é replicado para patentes inferiores garantindo
+                        organização, RP
+                        limpo e sério.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLUXO RP -->
+        <section class="section section--alt" id="fluxo">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Padrão FÊNIX — Procedimento</h2>
+                    <p class="section__sub">
+                        Todo treino deve parecer uma ocorrência real: acionamento, deslocamento, execução e debriefing.
+                        Sem atalhos, sem OOC, sem “reset mágico”.
+                    </p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline__item">
+                        <div class="timeline__dot"></div>
+                        <div>
+                            <h3>1) Acionamento (Central)</h3>
+                            <p>O Esquadrão é acionado por despacho oficial. Briefing rápido, designação de funções e
+                                autorização.</p>
+                            <div class="miniTags"><span>📟 Despacho</span><span>🧾 Autorização</span><span>📻
+                                    Rádio</span></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot"></div>
+                        <div>
+                            <h3>2) Decolagem & Rota</h3>
+                            <p>Decolagem do heliponto e voo até o QTH. Copiloto “narra” e mantém comunicação constante.
+                            </p>
+                            <div class="miniTags"><span>🧭 Rota</span><span>🛰️ Consciência situacional</span></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot"></div>
+                        <div>
+                            <h3>3) Execução Controlada</h3>
+                            <p>Simulação realista. Errou? estabiliza, comunica e continua em RP (não reseta).</p>
+                            <div class="miniTags"><span>✅ Segurança</span><span>📻 Comando</span><span>🤝
+                                    Coordenação</span></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline__item">
+                        <div class="timeline__dot"></div>
+                        <div>
+                            <h3>4) Retorno & Debriefing</h3>
+                            <p>Retorno à base, relatório, correção e definição de quem está apto para replicar o treino.
+                            </p>
+                            <div class="miniTags"><span>🏁 Encerramento</span><span>⭐ Reconhecimento</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDEM -->
+        <section class="section" id="ordem">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Ordem ideal dos treinos</h2>
+                    <p class="section__sub">
+                        Sequência pensada para segurança, curva de aprendizado e entrosamento.
+                        PTR Hostil fica por último (nível elite).
+                    </p>
+                </div>
+
+                <div class="sectionCinema" data-parallax-media data-parallax-section style="margin-top: 18px;">
+                    <video class="sectionCinema__video" autoplay muted loop playsinline preload="metadata"
+                        poster="img/heli-estrada.png">
+                        <source src="img/pqd.mp4" type="video/mp4" />
+                    </video>
+                    <div class="sectionCinema__fallback" style="background-image:url('img/heli-estrada.png')"></div>
+                    <div class="sectionCinema__overlay"></div>
+                    <div class="sectionCinema__label">
+                        <span class="chip">📌 ORDEM DE TREINOS</span>
+                        <strong>Curva de aprendizado + segurança</strong>
+                    </div>
+                </div>
+
+
+                <div class="order">
+                    <ol class="order__list">
+                        <li><span class="order__num">1</span> 4.4 — Manobras Avançadas de Pilotagem</li>
+                        <li><span class="order__num">2</span> 4.6 — Integração Infantaria × Aérea</li>
+                        <li><span class="order__num">3</span> 4.3 — Extração em Área de Risco</li>
+                        <li><span class="order__num">4</span> 4.2 — Pouso de Emergência Forçado</li>
+                        <li><span class="order__num">5</span> 4.5 — Perseguição Simulada Terrestre × Aérea</li>
+                        <li><span class="order__num">6</span> 4.7 — Operações Noturnas e Baixa Visibilidade</li>
+                        <li class="order__danger"><span class="order__num">7</span> 4.1 — PTR Hostil (Nível Elite)</li>
+                    </ol>
+
+                    <div class="order__panel">
+                        <h3>Filtro rápido</h3>
+                        <p class="muted">Selecione o nível para destacar os treinos.</p>
+                        <div class="segmented" role="group" aria-label="Filtro por nível">
+                            <button class="segmented__btn is-active" data-level="all" type="button">Todos</button>
+                            <button class="segmented__btn" data-level="novato" type="button">Básico</button>
+                            <button class="segmented__btn" data-level="intermediario"
+                                type="button">Intermediário</button>
+                            <button class="segmented__btn" data-level="avancado" type="button">Avançado</button>
+                            <button class="segmented__btn" data-level="elite" type="button">Elite</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TREINOS -->
+        <section class="section section--alt" id="treinos">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Treinos Avançados — QTH • Efetivo • Funções</h2>
+                    <p class="section__sub">
+                        Cada treino já vem com QTH recomendado, quantidade mínima e o que cada membro precisa fazer para
+                        dar certo.
+                    </p>
+                </div>
+
+                <div class="accordion" id="accordionTreinos">
+                    <!-- 4.4 -->
+                    <article class="acc acc--level-n" data-level="novato">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.4 • Base técnica</span>
+                                    <span class="acc__title">Manobras Avançadas de Pilotagem</span>
+                                    <span class="acc__meta">
+                                        <span class="tag">Básico</span>
+                                        <span class="tag tag--soft">Validação com superiores: SIM</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Aeroporto de Sandy Shores</li>
+                                        <li>Aeroporto de Grapeseed</li>
+                                        <li>Áreas abertas (baixa circulação)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto (treinando)</li>
+                                        <li>1 Instrutor (Inspetor/Brigadeiro+)</li>
+                                        <li>1 Copiloto (opcional)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> controle fino, curvas, subidas/descidas, pouso
+                                            preciso.</li>
+                                        <li><strong>Instrutor:</strong> cobra padrão, segurança, suavidade e comunicação
+                                            mínima.</li>
+                                        <li><strong>Copiloto:</strong> rádio e leitura do ambiente.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Sem “manobra suicida”</li>
+                                        <li>Rádio claro e curto</li>
+                                        <li>Pouso controlado 3/3 tentativas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.6 -->
+                    <article class="acc acc--level-n" data-level="novato">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.6 • Entrosamento</span>
+                                    <span class="acc__title">Integração Infantaria × Aérea</span>
+                                    <span class="acc__meta">
+                                        <span class="tag">Básico</span>
+                                        <span class="tag tag--soft">Validação com superiores: SIM</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Heliponto/Hospital (base)</li>
+                                        <li>La Mesa (industrial) / estacionamento amplo urbano</li>
+                                        <li>Rodovia com acostamento largo</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto</li>
+                                        <li>1 Copiloto</li>
+                                        <li>2–4 Infantaria</li>
+                                        <li>1 Instrutor (Inspetor+)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> hover estável, aproximação e pouso seguro.</li>
+                                        <li><strong>Copiloto:</strong> comando do embarque/desembarque no rádio.</li>
+                                        <li><strong>Infantaria:</strong> perímetro, embarque rápido, disciplina (sem
+                                            agir sem ordem).</li>
+                                        <li><strong>Instrutor:</strong> mede tempo e sincronização.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Desembarque/embarque em 20–35s (meta)</li>
+                                        <li>Rádio sem gritaria</li>
+                                        <li>Sem cruzar hélice / sem correr para área de risco</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.3 -->
+                    <article class="acc acc--level-i" data-level="intermediario">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.3 • Resgate</span>
+                                    <span class="acc__title">Extração em Área de Risco</span>
+                                    <span class="acc__meta">
+                                        <span class="tag tag--i">Intermediário</span>
+                                        <span class="tag tag--soft">Validação com superiores: SIM</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Vinewood / Downtown (altura)</li>
+                                        <li>Mount Chiliad (encostas)</li>
+                                        <li>Paleto Bay (remoto)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto</li>
+                                        <li>1 Copiloto</li>
+                                        <li>1 Operador/Infantaria</li>
+                                        <li>1–2 “Vítimas” (simulação)</li>
+                                        <li>1 Instrutor (Inspetor+)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> pairar só o necessário, reposicionar, manter
+                                            segurança.</li>
+                                        <li><strong>Copiloto:</strong> guia a extração e narra riscos.</li>
+                                        <li><strong>Operador:</strong> toma frente do resgate (marcação, retirada,
+                                            embarque).</li>
+                                        <li><strong>Vítimas:</strong> RP realista de estresse/ferimento.</li>
+                                        <li><strong>Instrutor:</strong> avalia tempo de exposição e comunicação.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Exposição mínima no hover</li>
+                                        <li>Extração com comando claro</li>
+                                        <li>Retirada segura sem “cortar” RP</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.2 -->
+                    <article class="acc acc--level-i" data-level="intermediario">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.2 • Emergência</span>
+                                    <span class="acc__title">Pouso de Emergência Forçado</span>
+                                    <span class="acc__meta">
+                                        <span class="tag tag--i">Intermediário</span>
+                                        <span class="tag tag--soft">Validação com superiores: SIM</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Rodovias afastadas</li>
+                                        <li>Campos abertos</li>
+                                        <li>Terreno improvisado (seguro)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto</li>
+                                        <li>1 Copiloto</li>
+                                        <li>2 Infantaria (perímetro)</li>
+                                        <li>1 Instrutor (Inspetor+)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> decide local, pouso controlado, corta risco.</li>
+                                        <li><strong>Copiloto:</strong> checklist, aciona apoio/rotas.</li>
+                                        <li><strong>Infantaria:</strong> perímetro imediato e evacuação segura.</li>
+                                        <li><strong>Instrutor:</strong> avalia tomada de decisão e procedimento.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Local escolhido com lógica</li>
+                                        <li>Perímetro rápido</li>
+                                        <li>Comunicação sem pânico</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.5 -->
+                    <article class="acc acc--level-a" data-level="avancado">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.5 • Apoio</span>
+                                    <span class="acc__title">Perseguição Simulada Terrestre × Aérea</span>
+                                    <span class="acc__meta">
+                                        <span class="tag tag--a">Avançado</span>
+                                        <span class="tag tag--soft">Validação: recomendada</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Centro / avenidas largas</li>
+                                        <li>Rodovias longas</li>
+                                        <li>Área mista urbana</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto</li>
+                                        <li>1 Copiloto</li>
+                                        <li>1 Viatura terrestre</li>
+                                        <li>1 Instrutor (Inspetor+)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> acompanha sem risco, altitude segura.</li>
+                                        <li><strong>Copiloto:</strong> repasse claro (direção, referência, obstáculos).
+                                        </li>
+                                        <li><strong>Terrestre:</strong> recebe orientação e decide no solo.</li>
+                                        <li><strong>Instrutor:</strong> avalia disciplina e utilidade do rádio.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Rádio objetivo (sem “GPS exato”)</li>
+                                        <li>Sem risco a civis</li>
+                                        <li>Perda de visual → protocolo de busca</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.7 -->
+                    <article class="acc acc--level-a" data-level="avancado">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.7 • Condições adversas</span>
+                                    <span class="acc__title">Operações Noturnas e Baixa Visibilidade</span>
+                                    <span class="acc__meta">
+                                        <span class="tag tag--a">Avançado</span>
+                                        <span class="tag tag--soft">Validação com superiores: SIM</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Zonas rurais à noite</li>
+                                        <li>Estradas com pouca iluminação</li>
+                                        <li>Montanhas e encostas</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto</li>
+                                        <li>1 Copiloto</li>
+                                        <li>2 Infantaria</li>
+                                        <li>1 Instrutor (Inspetor+)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> voo conservador e seguro.</li>
+                                        <li><strong>Copiloto:</strong> fala constante no rádio (sem silêncio).</li>
+                                        <li><strong>Infantaria:</strong> desembarque cuidadoso e perímetro.</li>
+                                        <li><strong>Instrutor:</strong> corrige riscos e pontua padrão.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Sem “rasante desnecessário”</li>
+                                        <li>Comunicação constante</li>
+                                        <li>Pousos limpos em baixa visibilidade</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4.1 -->
+                    <article class="acc acc--level-e" data-level="elite">
+                        <header class="acc__head">
+                            <button class="acc__btn" type="button" aria-expanded="false">
+                                <span>
+                                    <span class="acc__kicker">4.1 • NÍVEL ELITE</span>
+                                    <span class="acc__title">Simulação de PTR Hostil</span>
+                                    <span class="acc__meta">
+                                        <span class="tag tag--danger">Elite</span>
+                                        <span class="tag tag--soft">Validação: OBRIGATÓRIA</span>
+                                    </span>
+                                </span>
+                                <span class="acc__icon" aria-hidden="true">+</span>
+                            </button>
+                        </header>
+                        <div class="acc__panel" hidden>
+                            <div class="acc__grid">
+                                <div class="acc__card">
+                                    <h4>QTH (melhor para treino)</h4>
+                                    <ul class="list">
+                                        <li>Estacionamentos amplos (rotas de escape)</li>
+                                        <li>Zonas industriais</li>
+                                        <li>Praças abertas (controle do cenário)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Efetivo mínimo</h4>
+                                    <ul class="list">
+                                        <li>1 Piloto experiente (Oficial Comandante+)</li>
+                                        <li>1 Copiloto</li>
+                                        <li>2 Infantaria</li>
+                                        <li>2 Hostis simulados (controle total)</li>
+                                        <li>1 Instrutor (Brigadeiro/General)</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>O que cada um faz</h4>
+                                    <ul class="list">
+                                        <li><strong>Piloto:</strong> evasão e retirada estratégica (não combate).</li>
+                                        <li><strong>Copiloto:</strong> leitura do cenário e decisões rápidas no rádio.
+                                        </li>
+                                        <li><strong>Infantaria:</strong> reembarque rápido e disciplina total.</li>
+                                        <li><strong>Hostis:</strong> RP controlado (sem exagero, sem caos).</li>
+                                        <li><strong>Instrutor:</strong> comanda tudo e encerra se sair do padrão.</li>
+                                    </ul>
+                                </div>
+                                <div class="acc__card">
+                                    <h4>Critério de aprovação</h4>
+                                    <ul class="list">
+                                        <li>Retirada com mínima exposição</li>
+                                        <li>Sem escalada de “combate arcade”</li>
+                                        <li>Perímetro e evacuação acima de tudo</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="alert alert--danger">
+                                <strong>⚠️ Importante:</strong> este treino só entra quando o esquadrão estiver
+                                entrosado.
+                                Se não, vira quebra de RP e risco operacional.
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="section__end">
+                    <button class="btn btn--ghost" id="btnExpandAll" type="button">Expandir / Recolher tudo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIA -->
+        <section class="section" id="galeria">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Galeria Oficial — Esquadrão FÊNIX</h2>
+                    <p class="section__sub">Imagens reais do servidor, prontas para apresentação e divulgação interna.
+                    </p>
+                </div>
+
+                <div class="gallery__grid">
+                    <button class="gimg" type="button" data-modal-img="img/praia.png"><img src="img/praia.png"
+                            alt="Ocorrência na praia" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/resgate-praia.png"><img
+                            src="img/resgate-praia.png" alt="Resgate na praia" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/heli-estrada.png"><img
+                            src="img/heli-estrada.png" alt="Helicóptero em missão na estrada" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/piloto-pordo-sol.png"><img
+                            src="img/piloto-pordo-sol.png" alt="Operador do Fênix e aeronave" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/resgate-rochas.png"><img
+                            src="img/resgate-rochas.png" alt="Resgate em área rochosa" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/equipe.png"><img src="img/equipe.png"
+                            alt="Equipe do Esquadrão Fênix" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/voo-noturno.png"><img
+                            src="img/voo-noturno.png" alt="Voo noturno sobre a cidade" loading="lazy" /></button>
+                    <button class="gimg" type="button" data-modal-img="img/por-do-sol.png"><img src="img/por-do-sol.png"
+                            alt="Helicóptero ao pôr do sol" loading="lazy" /></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL BRIEFING -->
+    <div class="modal" id="briefingModal" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-label="Briefing rápido">
+        <div class="modal__backdrop" data-close></div>
+        <div class="modal__panel">
+            <div class="modal__head">
+                <strong>📻 Briefing Rápido — Esquadrão FÊNIX</strong>
+                <button class="iconBtn" type="button" data-close aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal__body">
+                <div class="briefGrid">
+                    <div class="briefItem">
+                        <h4>Objetivo</h4>
+                        <p>Treinar resposta realista a cenários críticos com padrão e disciplina no Fluxo RP.</p>
+                        linkage
+                    </div>
+                    <div class="briefItem">
+                        <h4>Regra de Ouro</h4>
+                        <p>Acionamento → Decolagem → Execução → Retorno → Debriefing. Sem atalhos OOC.</p>
+                    </div>
+                    <div class="briefItem">
+                        <h4>Comando</h4>
+                        <p>Instrutor observa e corrige. Replicação só após padronizar o procedimento.</p>
+                    </div>
+                    <div class="briefItem">
+                        <h4>Segurança</h4>
+                        <p>Prioridade: tripulação, perímetro e evacuação. Combate não é o objetivo.</p>
+                    </div>
+                </div>
+
+                <div class="modal__footer">
+                    <button class="btn btn--primary" data-close type="button">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL IMAGEM -->
+    <div class="imgModal" id="imgModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+        <div class="imgModal__backdrop" data-close></div>
+        <figure class="imgModal__panel" role="document">
+            <img id="imgModalTarget" alt="Imagem ampliada" />
+            <figcaption class="imgModal__caption">
+                <span>Toque/Click fora para fechar</span>
+                <button class="btn btn--ghost" type="button" id="btnOpenImg">Abrir imagem</button>
+            </figcaption>
+        </figure>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__left">
+                <img class="footer__logo" src="img/fenix.png" alt="Fênix" />
+                <div>
+                    <strong>ESQUADRÃO FÊNIX</strong>
+                    <p class="muted">Bombeiros • Operações Aéreas • GTA RP</p>
+                </div>
+            </div>
+            <div class="muted footer__right">
+                By Node.JS
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
